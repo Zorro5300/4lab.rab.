@@ -117,15 +117,13 @@
 
 *Примеры скриншотов:*
 
+1. Поиск кореектного Водительского удостоверения
 <img width="1920" height="496" alt="{41830969-E836-48DF-BCD4-96579F63E6EB}" src="https://github.com/user-attachments/assets/4e248b4d-2e9c-48cd-b346-de29d97152a4" />
 
+2. Поиск ФИО на английском
 <img width="1920" height="477" alt="{1691A3CA-8948-42EB-A3F9-7902D35C9DB5}" src="https://github.com/user-attachments/assets/3c946cda-f1bf-4510-ad18-3d8fbf567d1e" />
 
+3. Поиск надёжного пароля
 <img width="1920" height="487" alt="{0CEA9266-AAE4-4995-91B6-A72C92C25FFC}" src="https://github.com/user-attachments/assets/86c8a6b5-7fef-449d-9acd-73088fbb700e" />
 
 
-1. **Поиск годов 2000–2010** – окно приложения с текстом, содержащим годы, и таблицей результатов с найденными значениями.
-<img width="856" height="616" alt="image" src="https://github.com/user-attachments/assets/bbcca49e-e54f-4ab4-ae58-0c4457957f69&quot; />
-
-2. **Поиск номеров карт Maestro** – аналогично, с номерами карт.
-<img width="1147" height="653" alt="image" src="https://github.com/user-attachments/assets/a50bc98a-0d6b-4f29-be90-9e7e37c142f9&quot; />
