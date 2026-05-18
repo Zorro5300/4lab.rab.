@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
 
         private void CreateInterface()
         {
-            this.Text = "Лексический анализатор Pascal";
+            this.Text = "Лабораторная работа 4 — регулярные выражения";
             this.WindowState = FormWindowState.Maximized;
 
             // МЕНЮ
@@ -160,7 +160,7 @@ namespace WindowsFormsApp1
             searchTypeComboBox = new ComboBox
             {
                 Location = new Point(130, 10),
-                Size = new Size(220, 25),
+                Size = new Size(320, 25),
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = new Font("Segoe UI", 9)
             };
@@ -175,7 +175,7 @@ namespace WindowsFormsApp1
             searchButton = new Button
             {
                 Text = "🔍 Найти (Ctrl+R)",
-                Location = new Point(360, 9),
+                Location = new Point(460, 9),
                 Size = new Size(120, 28),
                 BackColor = Color.LightBlue,
                 UseVisualStyleBackColor = false,
@@ -186,7 +186,7 @@ namespace WindowsFormsApp1
             searchResultCountLabel = new Label
             {
                 Text = "Найдено: 0",
-                Location = new Point(490, 12),
+                Location = new Point(590, 12),
                 Size = new Size(150, 25),
                 Font = new Font("Segoe UI", 9),
                 ForeColor = Color.DarkBlue
@@ -238,7 +238,7 @@ namespace WindowsFormsApp1
             // интерфейс
 
             // Панель редактора
-            Label editorLabel = new Label { Text = " РЕДАКТОР КОДА", Dock = DockStyle.Top, Height = 25, ForeColor = Color.Black, Font = new Font("Segoe UI", 10, FontStyle.Bold) };
+            Label editorLabel = new Label { Text = " ТЕКСТ ДЛЯ ПРОВЕРКИ", Dock = DockStyle.Top, Height = 25, ForeColor = Color.Black, Font = new Font("Segoe UI", 10, FontStyle.Bold) };
             Panel editorPanel = new Panel { Dock = DockStyle.Fill };
             editorPanel.Controls.Add(editorTextBox);
             editorPanel.Controls.Add(editorLabel);
@@ -310,6 +310,24 @@ namespace WindowsFormsApp1
             };
 
             UpdateTitle();
+            LoadSampleText();
+        }
+
+        private void LoadSampleText()
+        {
+            editorTextBox.Text =
+                "Список водительских удостоверений:\r\n" +
+                "12AB345678 - Иванов А.А.\r\n" +
+                "99XY123456 - Петров Б.В.\r\n" +
+                "77MK987654 - Сидорова В.Г.\r\n" +
+                "01AA000001 - Смирнов Д.Е.\r\n" +
+                "Некорректные номера: 1AB345678, 12A345678, 12AB34567, 12ab345678, 12AB3456789\r\n" +
+                "Smith, John\r\n" +
+                "O'Brien, Patrick James\r\n" +
+                "Van Der Berg, Anna Marie\r\n" +
+                "weakpass\r\n" +
+                "Abcd123!\r\n" +
+                "Secure#Pass1";
         }
 
         // МЕТОДЫ ПОИСКА 
@@ -359,7 +377,8 @@ namespace WindowsFormsApp1
                 searchResultsGridView.Rows[0].Selected = true;
             }
 
-            errorTextBox.AppendText($"\n=== ПОИСК ПО ШАБЛОНУ: {SearchModule.GetPatternName(selectedType)} ===\n");
+            errorTextBox.AppendText($"\n=== ПОИСК: {SearchModule.GetPatternName(selectedType)} ===\n");
+            errorTextBox.AppendText($"РВ: {SearchModule.GetPattern(selectedType)}\n");
             errorTextBox.AppendText($"Найдено совпадений: {results.Count}\n\n");
         }
 
@@ -420,7 +439,7 @@ namespace WindowsFormsApp1
         private void UpdateTitle()
         {
             string name = string.IsNullOrEmpty(currentFile) ? "Новый файл" : Path.GetFileName(currentFile);
-            this.Text = $"Pascal Анализатор - {name}{(isModified ? "*" : "")}";
+            this.Text = $"ЛР4 — Регулярные выражения — {name}{(isModified ? "*" : "")}";
         }
 
         private void NewFile()
@@ -543,12 +562,25 @@ namespace WindowsFormsApp1
 
         private void ShowHelp()
         {
-            MessageBox.Show("Лексический анализатор Pascal\n\nГорячие клавиши:\nCtrl+F - фокус на поиск\nCtrl+R - поиск\nF5 - анализ", "Справка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(
+                "Лабораторная работа 4 — проверка регулярных выражений\n\n" +
+                "Шаблоны:\n" +
+                "1. Водительское удостоверение (2 цифры + 2 лат. буквы + 6 цифр, напр. 12AB345678)\n" +
+                "2. ФИО на английском: Last Name, First Name [Middle Name]\n" +
+                "3. Надёжный пароль (≥8 символов, A-Z, a-z, цифра, спецсимвол)\n\n" +
+                "Горячие клавиши:\nCtrl+F — выбор шаблона\nCtrl+R — поиск\nF5 — лексический анализ Pascal",
+                "Справка", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ShowAbout()
         {
-            MessageBox.Show("Лексический анализатор Pascal\nВерсия 3.0\n\nДобавлен поиск по регулярным выражениям", "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(
+                "Лабораторная работа 4\nТеория формальных языков\n\n" +
+                "Поиск по трём регулярным выражениям:\n" +
+                "• номер ВУ (Россия)\n" +
+                "• английское ФИО\n" +
+                "• надёжный пароль",
+                "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
     public class LexicalErrorInfo
